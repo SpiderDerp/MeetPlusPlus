@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import time
+from win10toast import ToastNotifier
 
 
 # Code to allow access for Microphone, Camera and notifications
@@ -45,31 +46,58 @@ def join_meet(link):
     driver.find_element_by_css_selector('div.HKarue').click()
     time.sleep(10)  
 
-def check_message(old_message, i):
+def check_message(old_message, i, f):
     #Finds message
     i = i
+    f = f
     try:
-        message = driver.find_element_by_xpath(f"//*[@id=\"ow3\"]/div[1]/div/div[9]/div[3]/div[4]/div/div[2]/div[2]/div[2]/span[2]/div/div[2]/div[1]/div[2]/div[{i}]").get_attribute("innerHTML").splitlines()[0]
+        message = driver.find_element_by_xpath(f"//*[@id=\"ow3\"]/div[1]/div/div[9]/div[3]/div[4]/div/div[2]/div[2]/div[2]/span[2]/div/div[2]/div[{f}]/div[2]/div[{i}]").get_attribute("innerHTML").splitlines()[0]
         return message
     except:
         message = old_message
         return message
 
-    
-
+def get_name(old_name, e):
+    e = e
+    try:
+        name = driver.find_element_by_xpath(f"//*[@id=\"ow3\"]/div[1]/div/div[9]/div[3]/div[4]/div/div[2]/div[2]/div[2]/span[2]/div/div[2]/div[{e}]/div[1]/div[1]").get_attribute("innerHTML").splitlines()[0]
+        return name
+    except:
+        name = old_name
+        return name 
 
 if __name__ == "__main__":
+    toast = ToastNotifier()
     link = "https://meet.google.com/pbo-ynqq-kjz"
     driver = webdriver.Chrome(chrome_options=opt, executable_path=r'chromedriver.exe') 
     join_meet(link)
     i = 1
+    e = 1
+    f = 1
     old_message = ""
+    old_name = ""
     while True:
-        new_message = check_message(old_message, i)
-        if (old_message != new_message):
+        new_name = get_name(old_name, e)
+        if(old_name != new_name):
+            if(old_name == ""):
+                f = 1
+            else:
+                f +=1
+                i = 1
+            old_name = new_name
+            e += 1
+            new_message = check_message(old_message, i, f)
             old_message = new_message
-            print(new_message)
-            i+=1
+            print(f"{new_name} - {new_message}")
+            toast.show_toast(f"{new_name}", f"{new_message}", duration = 5)
+            i += 1
+        elif(old_name == new_name):
+            new_message = check_message(old_message, i, f)
+            if(old_message != new_message):
+                old_message = new_message
+                print(f"{new_name} - {new_message}")
+                toast.show_toast(f"{new_name}", f"{new_message}", duration = 5)
+                i+=1            
         time.sleep(3)
     
 
