@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import QMainWindow, QWidget, QLabel, QLineEdit
 from PyQt5.QtWidgets import QPushButton
 from PyQt5.QtCore import QSize
 from PySide2.QtGui import QPalette
+from PyQt5 import QtGui
 
 
 class MainWindow(QMainWindow):
@@ -13,7 +14,7 @@ class MainWindow(QMainWindow):
         self.setMinimumSize(QSize(470, 600))
 
         self.setWindowTitle("Meet++")
-
+        self.setWindowIcon(QtGui.QIcon('meetlogo.ico'))
         self.titleLine = QLabel(self)
         self.titleLine.setText('Meet++')
         self.titleLine.move(20,0)
@@ -86,13 +87,13 @@ class MainWindow(QMainWindow):
 
 
     def meetLog(self):
-        #code to get gui input into necessary vars
+        print("logged!")
 
     def overlay(self):
-        #code to get gui input into necessary vars
+        print("overlayed!")
 
     def attendance(self):
-        #code to get gui input into necessary vars
+        print("attendanced!")
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
