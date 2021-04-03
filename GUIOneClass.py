@@ -4,7 +4,6 @@ from PyQt5.QtWidgets import QMainWindow, QWidget, QLabel, QLineEdit
 from PyQt5.QtWidgets import QPushButton
 from PyQt5.QtCore import QSize
 from PySide2.QtGui import QPalette
-from PyQt5 import QtGui
 
 
 class MainWindow(QMainWindow):
@@ -14,7 +13,7 @@ class MainWindow(QMainWindow):
         self.setMinimumSize(QSize(470, 600))
 
         self.setWindowTitle("Meet++")
-        self.setWindowIcon(QtGui.QIcon('meetlogo.ico'))
+
         self.titleLine = QLabel(self)
         self.titleLine.setText('Meet++')
         self.titleLine.move(20,0)
@@ -80,23 +79,25 @@ class MainWindow(QMainWindow):
         self.insLine2.setText('- Enter all information necessary. Seperate \n  the names in the class roster by commas \n  Ex: FirstName1 LastName1,FirstName2 LastName2')
         self.insLine2.move(30, 380)
 
-        self.insLine2 = QLabel(self)
-        self.insLine2.resize(400, 80)
-        self.insLine2.setText('- Press \'Log into Meet\' to enter the meeting. \n  Press \' Run Chat Overlay\' to run the chat overlay. \n  Press \'Run Attendance\' to run the auto-attendance')
-        self.insLine2.move(30, 480)
+        self.insLine3 = QLabel(self)
+        self.insLine3.resize(400, 80)
+        self.insLine3.setText('- Press \'Log into Meet\' to enter the meeting. \n  Press \' Run Chat Overlay\' to run the chat overlay. \n  Press \'Run Attendance\' to run the auto-attendance')
+        self.insLine3.move(30, 440)
 
 
     def meetLog(self):
-        print("logged!")
+        print("pie")
 
     def overlay(self):
-        print("overlayed!")
+        print("dej")
 
     def attendance(self):
-        print("attendanced!")
+        print("kik")
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
+    stylesheet = open("Darkeum.qss")
+    app.setStyleSheet(stylesheet.read())
     mainWin = MainWindow()
     mainWin.show()
     sys.exit( app.exec_())
