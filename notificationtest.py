@@ -65,12 +65,37 @@ def get_name(old_name, e):
     except:
         name = old_name
         return name 
+def check_attendance(attendance_list):
+    try:
+        driver.find_element_by_css_selector("div.sUgV6e").click()
+        time.sleep(1)
+        attendance_present = driver.find_elements_by_class_name("ZjFb7c")
+        attendance_present_str = []
+        attendance_missing = []
+
+        for i in range(len(attendance_present)):
+            attendance_present_str.append(attendance_present[i].get_attribute("innerHTML")) 
+
+        for i in range(len(attendance_list)):
+            if (attendance_list[i] not in attendance_present_str):
+                attendance_missing.append(attendance_list[i])
+
+        driver.find_element_by_css_selector("div.zCU1Sc").click()
+
+        if (len(attendance_missing) == 0):
+            return ["Everyone is present"]
+        else:
+            return attendance_missing
+    except:
+        return ["Failed to check attendance"]
 
 if __name__ == "__main__":
     toast = ToastNotifier()
     link = "https://meet.google.com/pbo-ynqq-kjz"
     driver = webdriver.Chrome(chrome_options=opt, executable_path=r'chromedriver.exe') 
     join_meet(link)
+    #missing = check_attendance(["Arha Gatram", "Sreeram Rave", "Nermal Skywalker"])
+    #print (missing)
     i = 1
     e = 1
     f = 1
