@@ -89,14 +89,14 @@ if __name__ == "__main__":
             new_message = check_message(old_message, i, f)
             old_message = new_message
             print(f"{new_name} - {new_message}")
-            toast.show_toast(f"{new_name}", f"{new_message}", duration = 5)
+            toast.show_toast(f"{new_name}", f"{new_message}", duration = 5, icon_path = "meetlogo.ico")
             i += 1
         elif(old_name == new_name):
             new_message = check_message(old_message, i, f)
             if(old_message != new_message):
                 old_message = new_message
                 print(f"{new_name} - {new_message}")
-                toast.show_toast(f"{new_name}", f"{new_message}", duration = 5)
+                toast.show_toast(f"{new_name}", f"{new_message}", duration = 5, icon_path = "meetlogo.ico")
                 i+=1            
         time.sleep(3)
     
