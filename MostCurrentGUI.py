@@ -1,20 +1,23 @@
 import sys
-from PyQt5 import QtCore, QtWidgets
+import sqlite3
+from PyQt5 import QtCore, QtWidgets, QtGui
 from PyQt5.QtWidgets import QMainWindow, QWidget, QLabel, QLineEdit
 from PyQt5.QtWidgets import QPushButton
 from PyQt5.QtCore import QSize
+import asyncio
 from PySide2.QtGui import QPalette
-from PyQt5 import QtGui
 
 
 class MainWindow(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
 
-        self.setMinimumSize(QSize(470, 600))
+
+        self.setFixedSize(QSize(470, 600))
 
         self.setWindowTitle("Meet++")
-        self.setWindowIcon(QtGui.QIcon('meetlogo.ico'))
+        self.setWindowIcon(QtGui.QIcon("meetlogo.ico"))
+
         self.titleLine = QLabel(self)
         self.titleLine.setText('Meet++')
         self.titleLine.move(20,0)
@@ -87,16 +90,18 @@ class MainWindow(QMainWindow):
 
 
     def meetLog(self):
-        print("logged!")
+        print("pie")
 
     def overlay(self):
-        print("overlayed!")
+        print("dej")
 
     def attendance(self):
-        print("attendanced!")
+        print("kik")
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
+    stylesheet = open("Darkeum.qss")
+    app.setStyleSheet(stylesheet.read())
     mainWin = MainWindow()
     mainWin.show()
     sys.exit( app.exec_())
