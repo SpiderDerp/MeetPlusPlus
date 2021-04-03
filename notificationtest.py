@@ -45,14 +45,15 @@ def join_meet(link):
     driver.find_element_by_css_selector('div.HKarue').click()
     time.sleep(10)  
 
-def check_message(i):
-    #Finds messages
+def check_message(old_message, i):
+    #Finds message
     i = i
     try:
-        messages = driver.find_element_by_xpath(f"//*[@id=\"ow3\"]/div[1]/div/div[9]/div[3]/div[4]/div/div[2]/div[2]/div[2]/span[2]/div/div[2]/div[1]/div[2]/div[{i}]").get_attribute("innerHTML").splitlines()[0]
-        return messages
+        message = driver.find_element_by_xpath(f"//*[@id=\"ow3\"]/div[1]/div/div[9]/div[3]/div[4]/div/div[2]/div[2]/div[2]/span[2]/div/div[2]/div[1]/div[2]/div[{i}]").get_attribute("innerHTML").splitlines()[0]
+        return message
     except:
-        pass
+        message = old_message
+        return message
 
     
 
@@ -64,7 +65,7 @@ if __name__ == "__main__":
     i = 1
     old_message = ""
     while True:
-        new_message = check_message(i)
+        new_message = check_message(old_message, i)
         if (old_message != new_message):
             old_message = new_message
             print(new_message)
