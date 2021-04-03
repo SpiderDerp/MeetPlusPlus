@@ -1,4 +1,5 @@
 import sys
+import sqlite3
 from PyQt5 import QtCore, QtWidgets, QtGui
 from PyQt5.QtWidgets import QMainWindow, QWidget, QLabel, QLineEdit
 from PyQt5.QtWidgets import QPushButton
@@ -12,9 +13,10 @@ class MainWindow(QMainWindow):
         QMainWindow.__init__(self)
 
 
-        self.setMinimumSize(QSize(470, 600))
+        self.setFixedSize(QSize(470, 600))
 
         self.setWindowTitle("Meet++")
+        self.setWindowIcon(QtGui.QIcon("meetlogo.ico"))
 
         self.titleLine = QLabel(self)
         self.titleLine.setText('Meet++')
@@ -98,7 +100,6 @@ class MainWindow(QMainWindow):
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
-    app.setWindowIcon(QtGui.QIcon("meetlogo.ico"))
     stylesheet = open("Darkeum.qss")
     app.setStyleSheet(stylesheet.read())
     mainWin = MainWindow()
