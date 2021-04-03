@@ -44,15 +44,31 @@ def join_meet(link):
     #Goes to chat tab
     driver.find_element_by_css_selector('div.HKarue').click()
     time.sleep(10)  
-    messages = driver.find_elements_by_css_selector('div.oIy2qc')
-    for message in messages[1:]:
-        print(message.text)
-    print(messages)
+
+def check_message(i):
+    #Finds messages
+    i = i
+    try:
+        messages = driver.find_element_by_xpath(f"//*[@id=\"ow3\"]/div[1]/div/div[9]/div[3]/div[4]/div/div[2]/div[2]/div[2]/span[2]/div/div[2]/div[1]/div[2]/div[{i}]").get_attribute("innerHTML").splitlines()[0]
+        return messages
+    except:
+        pass
+
+    
 
 
 if __name__ == "__main__":
     link = "https://meet.google.com/pbo-ynqq-kjz"
     driver = webdriver.Chrome(chrome_options=opt, executable_path=r'chromedriver.exe') 
     join_meet(link)
+    i = 1
+    old_message = ""
+    while True:
+        new_message = check_message(i)
+        if (old_message != new_message):
+            old_message = new_message
+            print(new_message)
+            i+=1
+        time.sleep(3)
     
 
