@@ -14,7 +14,7 @@ class AttendanceWindow(QDialog):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Attendance")
-        self.setWindowIcon(QtGui.QIcon("meetlogo.ico"))
+        self.setWindowIcon(QtGui.QIcon("logo.ico"))
         self.setFixedSize(300, 50)
         self.display = QLabel(self)
         self.display.resize(300, 50)
@@ -52,14 +52,14 @@ class Runnable(QRunnable):
                 new_message = MainWindow().check_message(old_message, i, f)
                 old_message = new_message
                 print(f"{new_name} - {new_message}")
-                toast.show_toast(f"{new_name}", f"{new_message}", icon_path = "meetlogo.ico", duration = 5)
+                toast.show_toast(f"{new_name}", f"{new_message}", icon_path = "logo.ico", duration = 5)
                 i += 1
             elif(old_name == new_name):
                 new_message = MainWindow().check_message(old_message, i, f)
                 if(old_message != new_message):
                     old_message = new_message
                     print(f"{new_name} - {new_message}")
-                    toast.show_toast(f"{new_name}", f"{new_message}", icon_path = "meetlogo.ico", duration = 5)
+                    toast.show_toast(f"{new_name}", f"{new_message}", icon_path = "logo.ico", duration = 5)
                     i+=1            
             time.sleep(1) 
 
@@ -83,7 +83,7 @@ class MainWindow(QMainWindow):
         self.setFixedSize(QSize(470, 600))
 
         self.setWindowTitle("Meet++")
-        self.setWindowIcon(QtGui.QIcon('meetlogo.ico'))
+        self.setWindowIcon(QtGui.QIcon('logo.ico'))
         self.titleLine = QLabel(self)
         self.titleLine.setText('Meet++')
         self.titleLine.move(20,0)
