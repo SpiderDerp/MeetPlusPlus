@@ -9,4 +9,4 @@ Dependencies:
 How to run: 
  1. Download the files
  2. Download the dependencies
- 3. Run meet++GUI.py
+ 3. Run either meet++GUI.py or meet++.exe
