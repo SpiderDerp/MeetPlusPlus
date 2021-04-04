@@ -34,14 +34,12 @@ class Runnable(QRunnable):
                 e += 1
                 new_message = MainWindow().check_message(old_message, i, f)
                 old_message = new_message
-                print(f"{new_name} - {new_message}")
                 toast.show_toast(f"{new_name}", f"{new_message}", icon_path = "meetlogo.ico", duration = 5)
                 i += 1
             elif(old_name == new_name):
                 new_message = MainWindow().check_message(old_message, i, f)
                 if(old_message != new_message):
                     old_message = new_message
-                    print(f"{new_name} - {new_message}")
                     toast.show_toast(f"{new_name}", f"{new_message}", icon_path = "meetlogo.ico", duration = 5)
                     i+=1            
             time.sleep(3) 
@@ -227,7 +225,6 @@ class MainWindow(QMainWindow):
     def attendance(self):
         attendancelist = self.rosterLine.text()
         attendancelist = attendancelist.split(",")
-        print(self.check_attendance(attendancelist))
 
 
 if __name__ == "__main__":
